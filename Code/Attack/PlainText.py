@@ -3,15 +3,21 @@
 # Storing password (and possibly its hint) as a plain text in a database. This is bad
 # since in case of a data breach, all passwords along with their user info will be read easily
 # by the attackers.
-
-raw_path = '../Resource/raw_passwords.txt'
+read_path = '../Resource/raw_passwords.txt'
+write_path = 'Output/plain_text.txt'
 
 
 def read_passwords():
-    with open(raw_path) as f:
-        lines = f.readlines()
-        lines = [x.strip() for x in lines]
-        return lines
+    with open(read_path) as f:
+        lines = [x.strip() for x in f]
+    print lines
+    write(lines)
 
 
-print read_passwords()
+def write(lines):
+    write_file = open(write_path, 'w')
+    for password in lines:
+        write_file.write(password + '\n')
+
+
+read_passwords()
