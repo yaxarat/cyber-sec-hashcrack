@@ -10,7 +10,6 @@ write_path = 'Output/plain_text.txt'
 def read_passwords():
     with open(read_path) as f:
         lines = [x.strip() for x in f]
-    print lines
     write(lines)
 
 
