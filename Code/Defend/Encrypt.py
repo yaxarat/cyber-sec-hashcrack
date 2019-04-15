@@ -11,10 +11,13 @@ def read_passwords():
 
 
 def encrypt(lines):
-    write_file = open(write_path, 'w')
+    write_file = open(write_path, 'wb')
+    ciphered = triple_des(b'YMeSt0njrWizp4IAxzBI7iWQ', padmode=PAD_PKCS5)
     for password in lines:
-        ciphered = triple_des('YMeSt0njrWizp4IAxzBI7iWQ').encrypt(password, padmode=2)
-        write_file.write(str(ciphered) + '\n')
+        password = password.encode('utf-8')
+        encrypted = ciphered.encrypt(password, padmode=PAD_PKCS5)
+        print(encrypted)
+        write_file.write(encrypted)
 
 
 read_passwords()
